@@ -28,8 +28,31 @@ class AbrigoAnimais {
       },
     };
 
+    const Brinquedos_Validos = Object.values(Animais).flatMap(
+      (animal) => animal.Brinquedos
+    );
+
     var Array_brinquedosPessoa1 = brinquedosPessoa1.split(",");
     var Array_brinquedosPessoa2 = brinquedosPessoa2.split(",");
+
+    if (
+      !Array_brinquedosPessoa1.every((item) =>
+        Brinquedos_Validos.includes(item.trim())
+      )
+    ) {
+      resultado.erro = "Brinquedo inválido";
+      resultado.lista = null;
+      return resultado;
+    }
+    if (
+      !Array_brinquedosPessoa2.every((item) =>
+        Brinquedos_Validos.includes(item.trim())
+      )
+    ) {
+      resultado.erro = "Brinquedo inválido";
+      resultado.lista = null;
+      return resultado;
+    }
 
     var Array_ordemAnimais = ordemAnimais.split(",");
 
@@ -38,7 +61,7 @@ class AbrigoAnimais {
       false
     ) {
       resultado.erro = "Animal inválido";
-      resultado.lista = false;
+      resultado.lista = null;
       return resultado;
     }
 
